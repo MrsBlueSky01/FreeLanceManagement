@@ -21,4 +21,22 @@ class ApiService {
       throw Exception('Bağlantı hatası: $e');
     }
   }
+
+  Future<bool> updateProject(String id, Project project) async {
+    try {
+      final response = await http.put(
+        Uri.parse('$baseUrl/$id'),
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode(project.toJson()),
+      );
+
+      if (response.statusCode == 204 || response.statusCode == 200) {
+        return true;
+      } else {
+        throw Exception('Güncelleme hatası: ${response.statusCode}');
+      }
+    } catch (e) {
+      throw Exception('Bağlantı hatası: $e');
+    }
+  }
 }

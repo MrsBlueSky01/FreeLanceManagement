@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'models/project.dart';
 import 'services/api_services.dart';
+import 'screens/project_detail_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -65,7 +66,7 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
           IconButton(
             icon: const Icon(Icons.refresh, color: Colors.blueAccent),
             onPressed: () => setState(() {}),
-          )
+          ),
         ],
       ),
       body: FutureBuilder<List<Project>>(
@@ -112,9 +113,12 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
                 ),
                 child: ListTile(
                   onTap: () {
-                    // Tıklayınca olacaklar (Detay sayfası için buraya döneceğiz)
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text("${project.name} seçildi")),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ProjectDetailScreen(project: project),
+                      ),
                     );
                   },
                   contentPadding: const EdgeInsets.all(12),
@@ -124,7 +128,10 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
                       color: statusColor.withOpacity(0.1),
                       shape: BoxShape.circle,
                     ),
-                    child: Icon(Icons.rocket_launch_rounded, color: statusColor),
+                    child: Icon(
+                      Icons.rocket_launch_rounded,
+                      color: statusColor,
+                    ),
                   ),
                   title: Text(
                     project.name,
@@ -144,7 +151,10 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
                     ),
                   ),
                   trailing: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
                       color: statusColor,
                       borderRadius: BorderRadius.circular(12),
