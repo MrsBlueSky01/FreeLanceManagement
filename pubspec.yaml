@@ -1,0 +1,10 @@
+name: freelance_management
+description: Freelance Management System
+
+environment:
+  sdk: ">=3.10.0 <4.0.0" # Bu satırı ekledik
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.0

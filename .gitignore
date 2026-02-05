@@ -1,0 +1,37 @@
+# Build results
+bin/
+obj/
+.vs/
+.vscode/
+*.dll
+*.exe
+*.pdb
+# SADECE ÖZEL AYARLARI KORU
+appsettings.json
+appsettings.Development.json
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+.idea_modules/
+*.sln.iml
+
+# MongoDB
+mongodb-data/
+
+# Environment
+.env
+.env.local
+
+secrets.json
+*.config
+.dart_tool/
+build/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
