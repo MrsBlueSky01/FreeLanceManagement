@@ -51,6 +51,65 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
     }
   }
 
+  void _showAddProjectDialog(BuildContext context) {
+    final nameController = TextEditingController();
+    final descController = TextEditingController();
+    String selectedStatus = 'Devam Ediyor';
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true, // Klavye açılınca formun yukarı kayması için
+      builder: (context) => Padding(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom, // Klavye payı
+          left: 20,
+          right: 20,
+          top: 20,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              "Yeni Proje Ekle",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            TextField(
+              controller: nameController,
+              decoration: const InputDecoration(labelText: "Proje Adı"),
+            ),
+            TextField(
+              controller: descController,
+              decoration: const InputDecoration(labelText: "Açıklama"),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                final newProject = Project(
+                  id: "", // Backend (MongoDB) ID'yi otomatik verecektir
+                  name: nameController.text,
+                  description: descController.text,
+                  status: selectedStatus,
+                );
+
+                bool success = await _apiService.createProject(newProject);
+                if (success) {
+                  Navigator.pop(context); // Formu kapat
+                  setState(() {}); // Listeyi yenile
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Ekleme başarısız oldu!")),
+                  );
+                }
+              },
+              child: const Text("Kaydet"),
+            ),
+            const SizedBox(height: 20),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -175,9 +234,8 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          // Yeni proje ekleme buraya gelecek
-        },
+        onPressed: () => _showAddProjectDialog(context),
+
         label: const Text("Yeni Proje"),
         icon: const Icon(Icons.add),
         backgroundColor: Colors.blueAccent,

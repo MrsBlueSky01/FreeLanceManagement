@@ -37,7 +37,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Freelance Management API V1");
-        c.RoutePrefix = "swagger";
+        c.RoutePrefix = "";
     });
 }
 app.UseCors("AllowAll");
@@ -45,4 +45,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
-app.Run();
+// Listen on all network interfaces
+app.Run("http://0.0.0.0:5000");

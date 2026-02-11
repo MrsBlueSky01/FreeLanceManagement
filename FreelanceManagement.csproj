@@ -10,7 +10,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.6" />
-    <PackageReference Include="MongoDB.Driver" Version="2.23.0" />
+    <PackageReference Include="MongoDB.Driver" Version="3.6.0" />
   </ItemGroup>
 
 </Project>

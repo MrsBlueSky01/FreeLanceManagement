@@ -1,0 +1,10 @@
+/Users/ayseyarenkuruy/FreelanceManagement/FreelanceManagement.csproj : warning NU1603: FreelanceManagement depends on Swashbuckle.AspNetCore (>= 6.4.6) but Swashbuckle.AspNetCore 6.4.6 was not found. Swashbuckle.AspNetCore 6.5.0 was resolved instead.
+/Users/ayseyarenkuruy/FreelanceManagement/FreelanceManagement.csproj : warning NU1603: FreelanceManagement depends on Swashbuckle.AspNetCore (>= 6.4.6) but Swashbuckle.AspNetCore 6.4.6 was not found. Swashbuckle.AspNetCore 6.5.0 was resolved instead.
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://0.0.0.0:5000
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /Users/ayseyarenkuruy/FreelanceManagement

@@ -5,7 +5,8 @@ import '../models/project.dart'; // Model dosyanı import etmeyi unutma
 class ApiService {
   // Bilgisayarından test ediyorsan (Android Emulator): 10.0.2.2
   // iOS Simülatör veya Web: localhost
-  static const String baseUrl = 'http://localhost:5000/api/Project';
+  // macOS: your machine's IP address (find with: ifconfig | grep "inet ")
+  static const String baseUrl = 'http://192.168.1.107:5000/api/Project';
 
   Future<List<Project>> fetchProjects() async {
     try {
@@ -37,6 +38,23 @@ class ApiService {
       }
     } catch (e) {
       throw Exception('Bağlantı hatası: $e');
+    }
+  }
+
+  Future<bool> createProject(Project project) async {
+    try {
+      final response = await http.post(
+        Uri.parse(
+          baseUrl,
+        ), // baseUrl Swagger'da test ettiğin http://localhost:5000/api/Project adresi olmalı
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode(project.toJson()),
+      );
+
+      return response.statusCode == 201 || response.statusCode == 200;
+    } catch (e) {
+      print("Ekleme hatası: $e");
+      return false;
     }
   }
 }
